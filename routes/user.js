@@ -9,6 +9,8 @@ router.get("/register", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-    res.render("login");
+    res.render("Usuarios/login",{
+        style: 'styleLogin.css'
+    });
 });
 export default router;
