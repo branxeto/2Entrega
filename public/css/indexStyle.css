@@ -1,0 +1,17 @@
+body{
+    background: #810804;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ce9102, #810804);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ce9102, #810804); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.letra{
+    color: aliceblue;
+}
+.carta{
+    background-color: antiquewhite;
+    border-radius: 16px;
+    box-shadow: 0px 0px 100px 24px rgb(147, 215, 255);
+}
+.boton_index{
+    border-radius: 16px;
+}

@@ -1,0 +1,28 @@
+body{
+    background: #810804;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ce9102, #810804);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ce9102, #810804); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.caja{
+    border-radius: 24px;
+}
+#Ingresar_Dato{
+    border-radius: 10px;
+    border-color: #1565C0;
+    margin-top: 5px;
+}
+
+.Titulo{
+    text-align: center;
+    font-size: large;
+}
+
+#floatingInput{
+    border-radius: 25px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #1565C0;
+}
+.boton{
+    background-color: rgb(48, 48, 48);
+}
