@@ -1,8 +1,11 @@
 import { app } from "./app.js";
 import userRouter from "./routes/user.js";
+import TablasRouter from "./routes/tablas.js";
+
 const port = 3001
 
 app.use("",userRouter);
+app.use("", TablasRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
@@ -18,4 +21,5 @@ app.get("/home",(req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
 
