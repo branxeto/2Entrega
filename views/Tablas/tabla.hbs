@@ -1,0 +1,26 @@
+{{>nav_tablas}}
+<table style="width:80%" class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID del evento</th>
+      <th scope="col">Nombre de evento</th>
+      <th scope="col">Fecha de creación</th>
+      <th scope="col">Detalles de votación</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Votar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+{{#each Alltablas}}
+  <tr>
+  <th scope="row">fhjskalhfas</th>
+  <td>{{AllTablas.Nombre_evento}}</td> 
+  <td>{{AllTablas.Fecha_creacion}} sada</td>
+  <td id="detalle"><a href={{AllTablas.Detalle_votacion}}>Ver detalles</a></td>
+  <td>{{AllTablas.Estado}} dsadas</td>
+  <td id="terminado">{{AllTablas.Votar}} dasdas</td>
+  </tr>
+{{/each}}
+  </tbody>
+</table>

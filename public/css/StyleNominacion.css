@@ -1,5 +1,4 @@
 .table{
-    
     background: #ffffff;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #734b6d, #42275a);  /* Chrome 10-25, Safari 5.1-6 */
     padding: 20px;
@@ -9,8 +8,7 @@
     border-radius: 10px;
     font-size: "lato";
     box-shadow: 0px 0px 20px 2px #42275a;
-    
-  }
+    }
 
   body{
     background: #810804;  
