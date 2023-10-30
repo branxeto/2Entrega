@@ -4,7 +4,6 @@ import TablasRouter from "./routes/tablas.js";
 
 const port = 3001
 
-
 app.use("",userRouter);
 app.use("", TablasRouter);
 
@@ -19,8 +18,8 @@ app.get("/home",(req, res) => {
   );
 })
 
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
 
