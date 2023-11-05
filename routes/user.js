@@ -1,6 +1,5 @@
 import express from "express" ;
 import User from "../models/user.js";
-import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -15,7 +14,7 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register" , (req, res) => {
-    User.create(req.body);
+    console.log("data", req.body);
 
     res.render("Usuarios/register",{
         style : 'styleregister.css'
