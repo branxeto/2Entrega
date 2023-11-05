@@ -14,7 +14,7 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register" , (req, res) => {
-    console.log("data", req.body);
+    User.create(req.body);
 
     res.render("Usuarios/register",{
         style : 'styleregister.css'
@@ -29,9 +29,6 @@ router.get("/login", (req, res) => {
 
 router.get("/list_users", async (req, res) => {
     const data = await User.find({});
-
-    console.log("data", data);
-
     res.render("Usuarios/list_users", {
         data: data,
     });
