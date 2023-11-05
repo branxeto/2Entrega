@@ -1,6 +1,8 @@
 //aqui van las rutas de todo lo relacionado a tabla
 import express from "express";
 import Tablas from "../models/Tablas.js";
+import jwt from "jsonwebtoken";
+import User from "../models/user.js";
 
 const router = express.Router();
 
@@ -24,8 +26,22 @@ router.get("/tabla", async (req,res) => {
 });
 
 router.get("/crearvotacion", async (req,res) =>{
+    const cookie = req.cookies["jwt"];
+    if(!cookie){
+        res.redirect("/login");
+        return;
+    }
+    const users = await User.find({});
+
     res.render("Tablas/crearVotacion",{
         style: 'Stylevotacion.css',
+        allUsers : users.map((current) => {
+            return {
+                Name: current.Name,
+                Rut: current.Rut,
+                password: current.password,
+            };
+        }),
     });
 });
 router.post("/crearvotacion", (req,res) => {
