@@ -66,14 +66,14 @@ router.post("/crearvotacion", (req,res) => {
 });
 
 router.get("/tabla/voto/:Nombretabla", async (req,res) => {
-    const info = await Tablas.findOne({Nombre_evento: req.params.Nombretabla}).exec();
+    const info = await Tablas.find({Nombre_evento: req.params.Nombretabla}).exec();
     res.render("Tablas/Lugarvotacion",{
         style: 'CreacionStyle.css',
         data: info,
     });
 });
 router.post("/tabla/voto/:Nombre_tabla", async (req,res) => {
-    const actualizar = await Tablas.findOne({Nombre_evento: req.params.Nombre_tabla}).exec();
+    const actualizar = await Tablas.find({Nombre_evento: req.params.Nombre_tabla}).exec();
     if(req.body.voto1 === true){
         Tablas.updateOne({
             voto1: actualizar.voto1 + 1
@@ -86,7 +86,7 @@ router.post("/tabla/voto/:Nombre_tabla", async (req,res) => {
 });
 
 router.get("/tabla/:Nombre_tabla" , async (req,res) => {
-    const detalles = await Tablas.findOne({Nombre_evento: 'req.params.Nombre_tabla'});
+    const detalles = await Tablas.find({Nombre_evento: 'req.params.Nombre_tabla'});
     res.render("Tablas/detalles_nominacion",{
         style: 'StyleNominacion.css',
         data: detalles
