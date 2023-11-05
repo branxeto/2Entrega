@@ -1,18 +1,10 @@
- <header>
-    <div class="nav">
-      <div class="imageref">
-        <a class="imagen" href="home">
-          <img class="vota" src="icons/vote.png" alt="logo de la pagina VOTA">
-        </a>
-      </div>
-    </div>
-  </header>
+{{>nav_usuarios}}
 
   <div class="inicio">
 
     <section class="sign">
       <h3 >Inicio de sesión</h3>
-      <form class="sign-form" action="index.html" method="get">
+      <form class="sign-form" action="/login" method="get">
 
         <div class="usuario">
           <label class="text" for="rut">Rut:</label>
@@ -23,8 +15,6 @@
           <label class="text" for="contraseña">Contraseña:</label>
           <input class="controls" type="password" placeholder="Ingrese su contraseña">
         </div>
-
-        <a href="#" class="olvido">¿Has olvidado la contraseña?</a>
 
         <input class="boton" type="submit" value="Ingresar"> 
 

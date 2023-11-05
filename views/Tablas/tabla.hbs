@@ -14,12 +14,18 @@
   <tbody>
 {{#each Alltablas}}
   <tr>
-  <th scope="row">fhjskalhfas</th>
-  <td>{{AllTablas.Nombre_evento}}</td> 
-  <td>{{AllTablas.Fecha_creacion}} sada</td>
-  <td id="detalle"><a href={{AllTablas.Detalle_votacion}}>Ver detalles</a></td>
-  <td>{{AllTablas.Estado}} dsadas</td>
-  <td id="terminado">{{AllTablas.Votar}} dasdas</td>
+  <th scope="row">{{this.ID}}</th>
+  <td>{{this.Nombre_evento}}</td> 
+  <td>{{this.Fecha_creacion}}</td>
+  <td id="detalle"><a href="tabla/{{this.Nombre_evento}}">Ver detalles</a></td>
+  <td>
+    {{#if Estado}} 
+      En progreso
+    {{else}}
+      Terminado
+    {{/if}}
+  </td>
+  <td id="terminado">{{this.Votar}}</td>
   </tr>
 {{/each}}
   </tbody>
