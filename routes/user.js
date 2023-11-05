@@ -1,5 +1,6 @@
 import express from "express" ;
 import User from "../models/user.js";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -34,11 +35,16 @@ router.post("/login", async (req, res) => {
     return;
   }
 
-  res.redirect("/home");
-})
+  const payload = currentUser["_doc"]
+  delete payload.password;
+
+  const signedJWT = jwt.sign(payload, "miFirma", {expiresIn: "1h"});
+
+  res.cookie("jwt", signedJWT).redirect("/home");
+});
 
 router.get("/list_users", async (req, res) => {
-    const users = await User.find({});
+  const users = await User.find({});
     res.render("Usuarios/list_users", {
       allUsers: users.map((current) => {
         return {

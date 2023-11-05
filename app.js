@@ -1,6 +1,7 @@
 import express from "express";
 import * as handlebars from "express-handlebars";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 const app = express();
 
 app.set("view engine", "hbs");
@@ -17,6 +18,7 @@ app.engine(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(cookieParser());
 
 mongoose
   .connect(
