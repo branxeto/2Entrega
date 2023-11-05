@@ -1,35 +1,36 @@
 {{>nav_tablas}}
 
-       <div class="container">
-        <div class="row justify-content-center">
-            <div class=" caja col-md-5 col-sm-12 col-lg-5 col-xl-5" style="background-color: white;">
-                <p class=" Titulo text-center fs-2 my-3"> Votacion </p>
-                <hr>
-                <form action="/tabla/:Nombre_tabla" method="post" class="pb-4 px-4">
-
-                    <p class="Titulo fs-4"> {{data.Nombre_evento}}</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class=" caja col-md-5 col-sm-12 col-lg-5 col-xl-5" style="background-color: white;">
+            <p class=" Titulo text-center fs-2 my-3"> Votacion </p>
+            <hr>
+            <form action="/tabla/voto/:Nombre_tabla" method="post" class="pb-4 px-4">
+                {{#if data}}
+                <p class="Titulo fs-4"> {{data.Nombre_evento}}</p>
                     
-                    <div class="text-center form-check">
-                        <input class="form-check-input boton" type="checkbox" name="voto1" id="defaultCheck1">
-                        <label class="texto_integrantes form-check-label fs-4" for="defaultCheck1">{{data.Persona1}}</label>
-                    </div>
-                    <div class="text-center form-check">
-                        <input class="form-check-input boton" type="checkbox" name="voto2" id="defaultCheck1">
-                        <label class="texto_integrantes form-check-label fs-4" for="defaultCheck1">{{data.Persona2}}</label>
-                    </div>
-                    <div class="text-center form-check">
-                        <input class="form-check-input boton" type="checkbox" name="voto3" id="defaultCheck1">
-                        <label class="texto_integrantes form-check-label fs-4" for="defaultCheck1">{{data.Persona3}}</label>
-                    </div>
+                <div class="text-center form-check">
+                    <input class="form-check-input boton" type="checkbox" name="voto1" id="defaultCheck1">
+                    <label class="texto_integrantes form-check-label fs-4" for="defaultCheck1">{{data.Persona1}}</label>
+                </div>
+                <div class="text-center form-check">
+                    <input class="form-check-input boton" type="checkbox" name="voto2" id="defaultCheck1">
+                    <label class="texto_integrantes form-check-label fs-4" for="defaultCheck1">{{data.Persona2}}</label>
+                </div>
+                <div class="text-center form-check">
+                    <input class="form-check-input boton" type="checkbox" name="voto3" id="defaultCheck1">
+                    <label class="texto_integrantes form-check-label fs-4" for="defaultCheck1">{{data.Persona3}}</label>
+                </div>
 
-                    <div class="d-grid gap-2 mt-5">
-                        <button class="btn btn-danger" type="submit">Subir Votación</button>
-                    </div>
+                <div class="d-grid gap-2 mt-5">
+                    <button class="btn btn-danger" type="submit">Subir Votación</button>
+                </div>
 
-                    </div>
-                </form>
-            </div>
+                </div>
+                {{/if}}
+            </form>
         </div>
-    </div> 
+    </div>
+</div> 
 
     

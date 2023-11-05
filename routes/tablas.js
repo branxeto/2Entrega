@@ -45,7 +45,7 @@ router.get("/crearvotacion", async (req,res) =>{
     });
 });
 router.post("/crearvotacion", (req,res) => {
-    const tabla ={
+    const tabla = {
         ID: Math.floor(Math.random()*1000) + 1,
         Nombre_evento: req.body.Nombre_evento,
         Fecha_creacion: new Date(), // Establece la fecha actual aquí
@@ -65,15 +65,15 @@ router.post("/crearvotacion", (req,res) => {
 
 });
 
-router.get("/tabla/:Nombre_tabla", async (req,res) => {
-    const info = await Tablas.findOne({Nombre_evento: req.params.Nombre_tabla});
+router.get("/tabla/voto/:Nombretabla", async (req,res) => {
+    const info = await Tablas.findOne({Nombre_evento: req.params.Nombretabla}).exec();
     res.render("Tablas/Lugarvotacion",{
         style: 'CreacionStyle.css',
         data: info,
     });
 });
-router.post("/tabla/:Nombre_tabla", async (req,res) => {
-    const actualizar = await Tablas.findOne({Nombre_evento: req.params.Nombre_tabla});
+router.post("/tabla/voto/:Nombre_tabla", async (req,res) => {
+    const actualizar = await Tablas.findOne({Nombre_evento: req.params.Nombre_tabla}).exec();
     if(req.body.voto1 === true){
         Tablas.updateOne({
             voto1: actualizar.voto1 + 1
@@ -81,9 +81,15 @@ router.post("/tabla/:Nombre_tabla", async (req,res) => {
     }
     res.render("Tablas/Lugarvotacion",{
         style: 'CreacionStyle.css',
-        data: info,
+        data: actualizar,
     });
 });
 
-
+router.get("/tabla/:Nombre_tabla" , async (req,res) => {
+    const detalles = await Tablas.findOne({Nombre_evento: 'req.params.Nombre_tabla'});
+    res.render("Tablas/detalles_nominacion",{
+        style: 'StyleNominacion.css',
+        data: detalles
+    });
+}); 
 export default router;

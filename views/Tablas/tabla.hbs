@@ -19,13 +19,13 @@
   <td>{{this.Fecha_creacion}}</td>
   <td id="detalle"><a href="tabla/{{this.Nombre_evento}}">Ver detalles</a></td>
   <td>
-    {{#if Estado}} 
+    {{#if this.Estado}} 
       En progreso
     {{else}}
       Terminado
     {{/if}}
   </td>
-  <td id="terminado">{{this.Votar}}</td>
+  <td id="terminado"><a href="tabla/voto/{{this.Nombre_evento}}">Votar</a></td>
   </tr>
 {{/each}}
   </tbody>

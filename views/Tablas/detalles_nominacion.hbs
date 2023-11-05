@@ -9,11 +9,18 @@
   <tbody>
     <td>
       <p></p>
-      <p>{{data.Persona1}} - {{data.Persona1_votos}} votos </p>
-      <p>{{data.Persona2}} - {{data.Persona2_votos}} votos </p>
-      <p>{{data.Persona3}} - {{data.Persona3_votos}} votos </p>
+      <p>{{data.Persona1}} - {{data.voto1}} votos </p>
+      <p>{{data.Persona2}} - {{data.voto2}} votos </p>
+      <p>{{data.Persona3}} - {{data.voto3}} votos </p>
     <tr>
-      <th scope="row">Estado del evento: {{data.Estado}} </th>
+      <th scope="row">
+        Estado del evento:
+        {{#if this.Estado}} 
+          En progreso
+        {{else}}
+          Terminado
+        {{/if}}
+      </th>
     </tr>
   </tbody>
 </table>
