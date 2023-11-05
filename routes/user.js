@@ -1,5 +1,5 @@
 import express from "express" ;
-import User from "../models/user.js";
+import login from "../models/user.js";
 
 const router = express.Router();
 
@@ -8,6 +8,10 @@ router.get("/profile/:username", (req, res) => {
 });
 
 router.get("/register", (req, res) => {
+    console.log("data", req.body);
+});
+
+router.post("/register," , (req, res) => {
     res.render("Usuarios/register",{
         style : 'styleregister.css'
     });
@@ -20,10 +24,12 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/list_users", async (req, res) => {
-    const data = await User.find({})
+    const uwu = await login.find({});
+
+    console.log("data", uwu);
 
     res.render("Usuarios/list_users", {
-        data: data,
+        data: uwu,
     });
 });
 
