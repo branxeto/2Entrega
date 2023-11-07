@@ -1,7 +1,7 @@
 import express from "express" ;
 import User from "../models/user.js";
 import jwt from "jsonwebtoken";
-
+import { tokensValidos } from './tablas.js';
 
 const router = express.Router();
 
@@ -17,6 +17,7 @@ router.get("/register", (req, res) => {
 
 router.post("/register" , (req, res) => {
     console.log("data", req.body);
+    User.create(req.body);
 
     res.render("Usuarios/register",{
         style : 'styleregister.css'
@@ -35,15 +36,13 @@ router.post("/login", async (req, res) => {
     res.redirect("/login");
     return;
   }
-
   const payload = currentUser["_doc"]
   delete payload.password;
 
   const signedJWT = jwt.sign(payload, "miFirma", {expiresIn: "1h"});
+  tokensValidos.push(signedJWT);
 
   res.cookie("jwt", signedJWT).redirect("/crearvotacion");
 });
-
-
 
 export default router;
