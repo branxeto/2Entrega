@@ -164,10 +164,6 @@ router.get("/tabla/:Nombre_tabla" , async (req,res) => {
         }
     });
 }); 
-<<<<<<< HEAD
-
 
 export default router;
-=======
-export default router;
->>>>>>> 9e8cd3fb77fa7658e507746243c061bb18802926
+
