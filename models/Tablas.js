@@ -3,43 +3,43 @@ import mongoose from "mongoose";
 const tablaSchema = mongoose.Schema({
     ID: {
         type: String,
-        require: true,
+        required: true,
     },
     Nombre_evento: {
         type: String,
-        requiere: true,
+        required: true,
     },
     Fecha_creacion: {
         type: Date,
-        requiere: true,
+        required: true,
     },
     Estado: {
         type: Boolean,
-        require: true,
+        required: true,
     },
     Persona1: {
         type: String,
-        requiere: true,
+        required: true,
     },
     Persona2: {
         type: String,
-        requiere: true,
+        required: true,
     },
     Persona3: {
         type: String,
-        requiere: true,
+        required: true,
     },
     voto1: {
         type: Number,
-        require: true,
+        required: true,
     },
     voto2: {
         type: Number,
-        require: true,
+        required: true,
     },
     voto3: {
         type: Number,
-        require: true,
+        required: true,
     },
 });
 

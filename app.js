@@ -31,4 +31,8 @@ mongoose
     console.error(`Connection refuse: ${error}`);
   });
 
+<<<<<<< HEAD
   export { app };
+=======
+export { app };
+>>>>>>> 9e8cd3fb77fa7658e507746243c061bb18802926

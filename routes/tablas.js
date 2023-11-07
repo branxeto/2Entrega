@@ -111,32 +111,63 @@ router.post("/crearvotacion", async (req,res) => {
 });
 
 router.get("/tabla/voto/:Nombretabla", async (req,res) => {
-    const info = await Tablas.findOne({Nombre_evento: req.params.Nombretabla}).exec();
+    const info = await Tablas.findOne({Nombre_evento: req.params.Nombretabla});
     res.render("Tablas/Lugarvotacion",{
         style: 'CreacionStyle.css',
         data: info,
     });
 });
 router.post("/tabla/voto/:Nombre_tabla", async (req,res) => {
-    const actualizar = await Tablas.findOne({Nombre_evento: req.params.Nombre_tabla}).exec();
-    if(req.body.voto1 === true){
-        Tablas.updateOne({
-            voto1: actualizar.voto1 + 1
+    const actualizar = await Tablas.findOne({Nombre_evento: req.params.Nombre_tabla});
+    console.log("data", actualizar);
+    if(document.getElementById('defaultCheck1').checked){
+        Tablas.findByIdAndUpdate({ID:actualizar.ID}, { $set: { voto1: actualizar.voto1 + 1}}, (err,doc) =>{
+            if(err) return console.log(err);
+            res.json(doc)
+        });
+     };
+    if(document.getElementById('defaultCheck2').checked){
+        Tablas.findByIdAndUpdate({ID:actualizar.ID}, { $set: { voto2: actualizar.vot2 + 1}}, (err,doc) =>{
+            if(err) return console.log(err);
+            res.json(doc)
+        });
+    }
+    if(document.getElementById('defaultCheck3').checked){
+        Tablas.findByIdAndUpdate({ID:actualizar.ID}, { $set: { voto3: actualizar.voto3 + 1}}, (err,doc) =>{
+            if(err) return console.log(err);
+            res.json(doc)
         });
     }
     res.render("Tablas/Lugarvotacion",{
         style: 'CreacionStyle.css',
-        data: actualizar,
+        data: {
+            Nombre_evento: actualizar.Nombre_evento,
+            Persona1: actualizar.Persona1,
+            Persona2: actualizar.Persona2,
+            Persona3: actualizar.Persona3,
+        }
     });
 });
 
 router.get("/tabla/:Nombre_tabla" , async (req,res) => {
-    const detalles = await Tablas.findOne({Nombre_evento: 'req.params.Nombre_tabla'});
+    const detalles = await Tablas.findOne({Nombre_evento: req.params.Nombre_tabla});
     res.render("Tablas/detalles_nominacion",{
         style: 'StyleNominacion.css',
-        data: detalles
+        data: {
+            Nombre_evento: detalles.Nombre_evento,
+            Persona1: detalles.Persona1,
+            Persona2: detalles.Persona2,
+            Persona3: detalles.Persona3,
+            voto1: detalles.voto1,
+            voto2: detalles.voto2,
+            voto3: detalles.voto3,
+        }
     });
 }); 
+<<<<<<< HEAD
 
 
 export default router;
+=======
+export default router;
+>>>>>>> 9e8cd3fb77fa7658e507746243c061bb18802926
