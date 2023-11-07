@@ -44,6 +44,10 @@ router.post("/login", async (req, res) => {
   res.cookie("jwt", signedJWT).redirect("/crearvotacion");
 });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 090644277357b403d7ea67b4a3e150cd9f89cc09
 
 
 export default router;
