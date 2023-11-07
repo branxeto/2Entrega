@@ -1,5 +1,7 @@
 import express from "express" ;
 import User from "../models/user.js";
+import jwt from "jsonwebtoken";
+
 
 const router = express.Router();
 
@@ -39,20 +41,9 @@ router.post("/login", async (req, res) => {
 
   const signedJWT = jwt.sign(payload, "miFirma", {expiresIn: "1h"});
 
-  res.cookie("jwt", signedJWT).redirect("/home");
+  res.cookie("jwt", signedJWT).redirect("/crearvotacion");
 });
 
-router.get("/list_users", async (req, res) => {
-  const users = await User.find({});
-    res.render("Usuarios/list_users", {
-      allUsers: users.map((current) => {
-        return {
-          Name: current.Name,
-          Rut: current.Rut,
-          password: current.password,
-        };
-      }),
-    });
-  });
+
 
 export default router;

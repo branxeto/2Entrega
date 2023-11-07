@@ -1,26 +1,26 @@
 {{>nav_tablas}}
 
-<table style="width:80%" class="table">
-  <thead>
-    <tr>
-      <th scope="col">{{data.Nombre_evento}}</th>  
-    </tr>
-    </thead>
-  <tbody>
-    <td>
-      <p></p>
-      <p>{{data.Persona1}} - {{data.voto1}} votos </p>
-      <p>{{data.Persona2}} - {{data.voto2}} votos </p>
-      <p>{{data.Persona3}} - {{data.voto3}} votos </p>
-    <tr>
-      <th scope="row">
-        Estado del evento:
-        {{#if this.Estado}} 
-          En progreso
-        {{else}}
-          Terminado
-        {{/if}}
-      </th>
-    </tr>
-  </tbody>
-</table>
+  <table style="width:80%" class="table">
+    <thead>
+      <tr>
+        <th scope="col">{{data.Nombre_evento}}</th>  
+      </tr>
+      </thead>
+    <tbody>
+      <td>
+        <p></p>
+        <p>{{data.Persona1}} - {{data.voto1}} votos </p>
+        <p>{{data.Persona2}} - {{data.voto2}} votos </p>
+        <p>{{data.Persona3}} - {{data.voto3}} votos </p>
+      <tr>
+        <th scope="row">
+          Estado del evento:
+          {{#if data.Estado}} 
+            En progreso
+          {{else}}
+            Terminado
+          {{/if}}
+        </th>
+      </tr>
+    </tbody>
+  </table>
