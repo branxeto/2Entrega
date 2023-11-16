@@ -114,7 +114,12 @@ router.get("/tabla/voto/:Nombretabla", async (req,res) => {
     const info = await Tablas.findOne({Nombre_evento: req.params.Nombretabla});
     res.render("Tablas/Lugarvotacion",{
         style: 'CreacionStyle.css',
-        data: info,
+        data: {
+            Nombre_evento: info.Nombre_evento,
+            Persona1: info.Persona1,
+            Persona2: info.Persona2,
+            Persona3: info.Persona3,
+        }
     });
 });
 router.post("/tabla/voto/:Nombre_tabla", async (req,res) => {
