@@ -2,7 +2,7 @@ import { app } from "./app.js";
 import userRouter from "./routes/user.js";
 import TablasRouter from "./routes/tablas.js";
 
-const port = 3001;
+const port = 3000;
 
 app.use("", userRouter);
 app.use("", TablasRouter);
