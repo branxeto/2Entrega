@@ -100,14 +100,12 @@ router.post("/eventos/crear", async (req,res) => {
         };
         Tablas.create(tabla);
         console.log("data", tabla);     
-        res.json({success: true});
-        
+        res.json({success: true});        
         
       } catch (error) {
         console.error('Error:', error);
         return res.json({ success: false, message: "acceso denegado"});
     }
-
 });
 
 router.get("/eventos/:Nombretabla/votar", async (req,res) => {
@@ -123,33 +121,39 @@ router.get("/eventos/:Nombretabla/votar", async (req,res) => {
     });
 });
 router.post("/eventos/:Nombretabla/votar", async (req,res) => {
-    const actualizar = await Tablas.findOne({Nombre_evento: req.params.Nombre_tabla});
-    console.log("data", actualizar);
+    const actualizar = await Tablas.findOne({Nombre_evento: req.params.Nombretabla});
+    const filter = { Nombre_evento: actualizar.Nombre_evento};
     if(req.body.defaultCheck1){
-        await Tablas.findByIdAndUpdate(actualizar._id, { $set: { voto1: actualizar.voto1 + 1 } }, (err,doc) =>{
-            if(err) return console.log(err);
-            res.json(doc);
+        let update1 = { voto1: actualizar.voto1 + 1};
+        await Tablas.findOneAndUpdate(filter, update1, {
+            useFindAndModify: false
         });
+        console.log("se realizo 1");
      };
     if(req.body.defaultCheck2){
-        await Tablas.findByIdAndUpdate(actualizar._id, { $set: { voto2: actualizar.voto2 + 1 } }, (err,doc) =>{
-            if(err) return console.log(err);
-            res.json(doc);
+        let update2 = { voto2: actualizar.voto2 + 1};
+        await Tablas.findOneAndUpdate(filter, update2, {
+            useFindAndModify: false
         });
+        console.log("se realizo 2");
     };
     if(req.body.defaultCheck3){
-        await Tablas.findByIdAndUpdate(actualizar._id, { $set: { voto3: actualizar.voto3 + 1 } }, (err,doc) =>{
-            if(err) return console.log(err);
-            res.json(doc);
+        let update3 = { voto3: actualizar.voto3 + 1};
+        await Tablas.findOneAndUpdate(filter, update3, {
+            useFindAndModify: false
         });
+        console.log("se realizo 3");
     };
+    console.log("data", actualizar);
     res.json({
-        data: {
+            success: true,
             Nombre_evento: actualizar.Nombre_evento,
             Persona1: actualizar.Persona1,
             Persona2: actualizar.Persona2,
             Persona3: actualizar.Persona3,
-        }
+            voto3: actualizar.voto3,
+            voto2: actualizar.voto2,
+            voto1: actualizar.voto1
     });
 });
 

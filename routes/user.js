@@ -1,15 +1,17 @@
 import express from "express" ;
 import User from "../models/user.js";
 import jwt from "jsonwebtoken";
+import jwtAuthenticated from "../helpers/jwtAuthentication.js";
 import { tokensValidos } from './tablas.js';
 
 const router = express.Router();
 
-router.get("/usuarios/corriente", async (req, res) => {
-    const user = await User.findOne({});
-    res.render("Usuarios/register", {
+router.get("/usuarios/corriente", jwtAuthenticated,async (req, res) => {
+    try {
         
-    })
+    } catch (error) {
+        
+    }
 
 })
 
@@ -56,7 +58,7 @@ router.post("/usuarios/ingresar", async (req, res) => {
 
   const signedJWT = jwt.sign(payload, "miFirma", {expiresIn: "1h"});
   tokensValidos.push(signedJWT);
-res.json({success: true, jwt: signedJWT})
+  res.json({success: true, jwt: signedJWT})
   //res.cookie("jwt", signedJWT).redirect("/crearvotacion");
 });
 
