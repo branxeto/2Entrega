@@ -29,7 +29,7 @@ router.get("/eventos", async (req,res) => {
 export const tokensValidos = [];
  
 
-function verificarToken(token, secreto) {
+export function verificarToken(token, secreto) {
     return new Promise((resolve, reject) => {
     
       if (tokensValidos.includes(token)) {
@@ -49,6 +49,8 @@ function verificarToken(token, secreto) {
       }
     });
 }
+
+
 
 router.get("/eventos/crear", async (req,res) =>{
     const cookie = req.headers.authorization;

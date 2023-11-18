@@ -3,15 +3,17 @@ import User from "../models/user.js";
 import jwt from "jsonwebtoken";
 import jwtAuthenticated from "../helpers/jwtAuthentication.js";
 import { tokensValidos } from './tablas.js';
+import getCurrentUser from "../helpers/getCurrentUser.js";
+import { verificarToken } from './tablas.js';
+
 
 const router = express.Router();
 
-router.get("/usuarios/corriente", jwtAuthenticated,async (req, res) => {
-    try {
+router.get("/usuarios/corriente", async (req, res) => {
+    const user = await User.findOne({});
+    res.render("Usuarios/register", {
         
-    } catch (error) {
-        
-    }
+    })
 
 })
 
@@ -42,7 +44,7 @@ router.post("/usuarios/crear" , async (req, res) => {
 });
 
 router.get("/usuarios/ingresar", (req, res) => {
-    res.render("Usuarios/login",{
+    res.render("usuarios/login",{
         style: 'styleLogin.css'
     });
 });
