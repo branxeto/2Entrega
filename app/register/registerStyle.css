@@ -1,0 +1,110 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{ 
+    display: block;
+}
+
+.nav{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.imageref{
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+.imagen{
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.vota{
+    width: 100px;
+    aspect-ratio: auto 100 / 100;
+    height: 100px;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+body{
+    background: #810804;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ce9102, #810804);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ce9102, #810804); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.reg{
+    width: 400px;
+    background: #f46b45;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #eea849, #f46b45);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #eea849, #f46b45); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    padding: 30px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 10px;
+    font-size: "lato";
+    color: white;
+}
+
+.reg h3{
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.text{
+    display: block;
+    margin-bottom: 3px;
+}
+
+.controls{
+    width: 100%;
+    display: block;
+    padding: 5px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    border: 2px solid #2A2356;
+    font-size: 15px;
+}
+
+.reg .boton{
+    width: 100%;
+    margin-top: 15px;
+    background: #ED213A;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #93291E, #ED213A);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #93291E, #ED213A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: azure;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+}
+
+::placeholder{
+    color: #625c89;
+    font-family: "Lato", sans-serif;
+}
+
+.olvido{
+    display: block;
+    margin-top: 10px;
+}

@@ -53,13 +53,14 @@ export function verificarToken(token, secreto) {
 
 
 router.get("/eventos/crear", async (req,res) =>{
-    const cookie = req.headers.authorization;
-    if(!cookie){
+    
+    const jwtAuth = req.headers.authorization;
+    if(!jwtAuth){
         res.json({success: false, message: "acceso denegado"});
         return;
     }
     try {
-        const decoded = await verificarToken(cookie, 'miFirma');
+        const decoded = await verificarToken(jwtAuth, 'miFirma');
         console.log('Token válido:', decoded);
             const users = await User.find({});
             res.json({
@@ -80,13 +81,14 @@ router.get("/eventos/crear", async (req,res) =>{
       }
 });
 router.post("/eventos/crear", async (req,res) => {
-    const cookie = req.headers.authorization;
-    if(!cookie){
+    
+    const jwtAuth = req.headers.authorization;
+    if(!jwtAuth){
         res.json({ success: false, message: "acceso denegado"});
         return;
     }
     try {
-        const decoded = await verificarToken(cookie, 'miFirma');
+        const decoded = await verificarToken(jwtAuth, 'miFirma');
         console.log('Token válido:', decoded);
         const tabla = {
             ID: Math.floor(Math.random()*1000) + 1,
@@ -112,48 +114,43 @@ router.post("/eventos/crear", async (req,res) => {
 
 });
 
-router.get("/eventos/:Nombretabla/votar", async (req,res) => {
-    const info = await Tablas.findOne({Nombre_evento: req.params.Nombretabla});
-    res.render("Tablas/Lugarvotacion",{
-        style: 'CreacionStyle.css',
-        data: {
-            Nombre_evento: info.Nombre_evento,
-            Persona1: info.Persona1,
-            Persona2: info.Persona2,
-            Persona3: info.Persona3,
+router.post("/eventos/:Nombretabla/votar", async (req, res) => {
+    try {
+        const actualizar = await Tablas.findOne({ Nombre_evento: req.params.Nombretabla });
+        const filter = { Nombre_evento: actualizar.Nombre_evento };
+
+        if (req.body.votoCandidato === 1) {
+            actualizar.voto1 += 1;
+        } else if (req.body.votoCandidato === 2) {
+            actualizar.voto2 += 1;
+        } else if (req.body.votoCandidato === 3) {
+            actualizar.voto3 += 1;
+        } else {
+            res.json({ success: false, message: "Voto no válido" });
+            return;
         }
-    });
+
+        await actualizar.save();
+
+        res.json({
+            success: true,
+            message: "Voto registrado exitosamente",
+            data: {
+                Nombre_evento: actualizar.Nombre_evento,
+                Persona1: actualizar.Persona1,
+                Persona2: actualizar.Persona2,
+                Persona3: actualizar.Persona3,
+                voto3: actualizar.voto3,
+                voto2: actualizar.voto2,
+                voto1: actualizar.voto1
+            }
+        });
+    } catch (err) {
+        console.log("Error", err);
+        res.json({ success: false, message: "Error al procesar el voto" });
+    }
 });
-router.post("/eventos/:Nombretabla/votar", async (req,res) => {
-    const actualizar = await Tablas.findOne({Nombre_evento: req.params.Nombre_tabla});
-    console.log("data", actualizar);
-    if(req.body.defaultCheck1){
-        await Tablas.findByIdAndUpdate(actualizar._id, { $set: { voto1: actualizar.voto1 + 1 } }, (err,doc) =>{
-            if(err) return console.log(err);
-            res.json(doc);
-        });
-     };
-    if(req.body.defaultCheck2){
-        await Tablas.findByIdAndUpdate(actualizar._id, { $set: { voto2: actualizar.voto2 + 1 } }, (err,doc) =>{
-            if(err) return console.log(err);
-            res.json(doc);
-        });
-    };
-    if(req.body.defaultCheck3){
-        await Tablas.findByIdAndUpdate(actualizar._id, { $set: { voto3: actualizar.voto3 + 1 } }, (err,doc) =>{
-            if(err) return console.log(err);
-            res.json(doc);
-        });
-    };
-    res.json({
-        data: {
-            Nombre_evento: actualizar.Nombre_evento,
-            Persona1: actualizar.Persona1,
-            Persona2: actualizar.Persona2,
-            Persona3: actualizar.Persona3,
-        }
-    });
-});
+
 
 router.get("/eventos/:Nombre_tabla/" , async (req,res) => {
     const detalles = await Tablas.findOne({Nombre_evento: req.params.Nombre_tabla});

@@ -2,7 +2,6 @@ import express from "express" ;
 import User from "../models/user.js";
 import jwt from "jsonwebtoken";
 import { tokensValidos } from './tablas.js';
-import getCurrentUser from "../helpers/getCurrentUser.js";
 import { verificarToken } from './tablas.js';
 
 
@@ -18,7 +17,7 @@ router.get("/usuarios/corriente", async (req, res) => {
     try {
         const currentUser = await verificarToken(cookie, 'miFirma');
         console.log("currentUser", currentUser);
-        res.render("Usuarios/register", { user: { name: currentUser.name } });
+        res.render("Usuarios/register", { user: { name: current.name } });
     } catch (error) {
         console.error('Error:', error);
         res.json({ success: false, message: "acceso denegado" });
@@ -40,12 +39,12 @@ router.post("/usuarios/crear" , async (req, res) => {
     const veriUsuario = await User.findOne({ Rut: req.body.Rut });
     if(!veriUsuario){
         User.create(req.body);
-        res.json({
+        return res.json({
         "success": true,
         "message": "ya existe este usuario"
         });
     }
-    res.json({
+    return res.json({
         "success": false,
         "message": "ya existe este usuario"
     });
@@ -58,6 +57,8 @@ router.get("/usuarios/ingresar", (req, res) => {
 });
 
 router.post("/usuarios/ingresar", async (req, res) => {
+    
+
   const currentUser = await User.findOne({ Rut: req.body.Rut });
   if(!currentUser || currentUser.password !== req.body.password){
     res.json({success: false, message: "usuario o contraseña incorrecta"});
@@ -68,7 +69,7 @@ router.post("/usuarios/ingresar", async (req, res) => {
 
   const signedJWT = jwt.sign(payload, "miFirma", {expiresIn: "1h"});
   tokensValidos.push(signedJWT);
-res.json({success: true, jwt: signedJWT})
+  res.json({success: true, jwt: signedJWT})
   //res.cookie("jwt", signedJWT).redirect("/crearvotacion");
 });
 

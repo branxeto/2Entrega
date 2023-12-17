@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleLogin.css">
+    <title>Iniciar sesión</title>
+</head>
+
+<body>
+  
+  <header>
+    <div class="nav">
+      <div class="imageref">
+        <a class="imagen" href="../index.html">
+          <img class="vota" src="../../public/icons/vote.png" alt="logo de la pagina VOTA">
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="inicio">
+
+    <section class="sign">
+      <h3 >Inicio de sesión</h3>
+      <form class="sign-form" id="loginForm" action="/usuarios/ingresar" method="post">
+
+        <div class="usuario">
+          <label class="text" for="rut">Rut:</label>
+          <input class="controls" type="text" name="Rut" id="Rut" placeholder="Ingrese su rut">
+        </div>
+
+        <div class="contraseña">
+          <label class="text" for="contraseña">Contraseña:</label>
+          <input class="controls" type="password" name="password" id="password" placeholder="Ingrese su contraseña">
+        </div>
+
+        <input class="boton" type="submit" value="Ingresar"> 
+
+        <label class="olvido" for="olvido">¿No tienes cuenta? <a href="crear">Registrarse</a></label>
+
+      </form>
+
+    </section>
+
+  </div>
+  <script src="login.js" defer></script>
+</body>
+</html>
