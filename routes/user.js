@@ -1,6 +1,7 @@
 import express from "express" ;
 import User from "../models/user.js";
 import jwt from "jsonwebtoken";
+import jwtAuthenticated from "../helpers/jwtAuthentication.js";
 import { tokensValidos } from './tablas.js';
 import { verificarToken } from './tablas.js';
 
@@ -17,7 +18,7 @@ router.get("/usuarios/corriente", async (req, res) => {
     try {
         const currentUser = await verificarToken(cookie, 'miFirma');
         console.log("currentUser", currentUser);
-        res.render("Usuarios/register", { user: { name: current.name } });
+        res.render("Usuarios/register", { user: { name: currentUser.name } });
     } catch (error) {
         console.error('Error:', error);
         res.json({ success: false, message: "acceso denegado" });
